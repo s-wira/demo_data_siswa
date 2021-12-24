@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DataSiswaForm implements RecordAdapter<DataSiswa> {
 
+    private Long id;
     private Integer nis;
     private String namaSiswa;
     private String alamat;
@@ -31,6 +32,7 @@ public class DataSiswaForm implements RecordAdapter<DataSiswa> {
             .birthDate(birthDate)
             .birthPlace(birthPlace)
             .citizenship(citizenship)
+            .id(id)
             .build();
     }
     @Override
@@ -44,6 +46,7 @@ public class DataSiswaForm implements RecordAdapter<DataSiswa> {
             .namaSiswa(namaSiswa)
             .nis(nis)
             .phoneNum(phoneNum)
+            .id(id)
             .build();
     }
 }

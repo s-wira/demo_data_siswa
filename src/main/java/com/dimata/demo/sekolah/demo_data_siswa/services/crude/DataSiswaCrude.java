@@ -43,6 +43,10 @@ public class DataSiswaCrude {
 			});
 	}
 
+    public Mono<DataSiswa> updateRecord(Option option) {
+        return dataSiswaDbHandler.update(option.getRecord(), option.getRecord().getId());
+    }
+
     @Data
     @Setter(AccessLevel.NONE)
     public static class Option {

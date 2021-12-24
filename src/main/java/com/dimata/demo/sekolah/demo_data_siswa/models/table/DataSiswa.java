@@ -159,8 +159,7 @@ public class DataSiswa implements UpdateAvailable<DataSiswa>, Persistable<Long>{
 
     @Override
     public DataSiswa update(DataSiswa newData) {
-        // TODO Auto-generated method stub
-        return null;
+        return Builder.updateBuilder(this, newData).build();
     }
 
     
