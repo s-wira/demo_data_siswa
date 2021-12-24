@@ -27,7 +27,7 @@ public class SiswaController {
 
     private static final String BASE_URL = "/maintainer/v1";
 
-    @PostMapping(path = BASE_URL + "/data-siswa", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = BASE_URL + "/data_siswa", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Mono<DataSiswa> maintainerAddDataSiswa(@RequestBody DataSiswaForm form) {
         return dataSiswaApi.createDataSiswa(form);
     }
@@ -38,7 +38,7 @@ public class SiswaController {
     }
 
     @GetMapping(path = BASE_URL + "/data_siswa/{nisn}")
-    public Mono<DataSiswa> maintainerGetDataSiswa(@PathVariable("nisn") long nisn) {
+    public Mono<DataSiswa> maintainerGetDataSiswa(@PathVariable("nisn") Long nisn) {
         return dataSiswaApi.getDataSiswa(nisn);
     }
 

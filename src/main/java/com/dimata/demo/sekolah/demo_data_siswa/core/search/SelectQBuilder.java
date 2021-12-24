@@ -157,7 +157,7 @@ public class SelectQBuilder<T> {
             .append((sort.isAsc() ? " ASC" : " DESC"));
         }
         
-        if(!commonParam.isNolmt() && !limit.result().isBlank()) {
+        if(!limit.result().isBlank()) {
             query.append(" ").append(limit.result());
         }
         return query.toString();

@@ -42,8 +42,9 @@ public class DataSiswaApi {
 
     public Mono<DataSiswa> getDataSiswa(Long id) {
         var sql = SelectQBuilder.emptyBuilder(DataSiswa.TABLE_NAME)
-            .addWhere(WhereQuery.when(DataSiswa.TABLE_NAME + "." + DataSiswa.ID_COL).is(id))
+            .addWhere(WhereQuery.when(DataSiswa.ID_COL).is(id))
             .build();
+        System.out.println(sql);
         return template.getDatabaseClient()
             .sql(sql)
             .map(DataSiswa::fromRow)
