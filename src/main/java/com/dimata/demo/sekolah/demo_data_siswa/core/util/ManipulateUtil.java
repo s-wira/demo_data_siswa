@@ -23,7 +23,7 @@ public class ManipulateUtil {
      * @param secondObject Object yang direturn jika firstObject null.
      * @param <T>          Semua jenis Object.
      */
-    public static <T> T changeItOrNot(T firstObject, T secondObject) {
+    public static <T> String changeItOrNot(T firstObject, T secondObject) {
         if (firstObject != null) {
             return firstObject;
         }

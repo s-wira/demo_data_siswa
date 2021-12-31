@@ -2,6 +2,7 @@ package com.dimata.demo.sekolah.demo_data_siswa.services.dbHandler;
 
 import com.dimata.demo.sekolah.demo_data_siswa.core.api.DbHandlerBase;
 import com.dimata.demo.sekolah.demo_data_siswa.models.table.DataSiswa;
+import com.dimata.demo.sekolah.demo_data_siswa.models.table.DataSiswa;
 import com.dimata.demo.sekolah.demo_data_siswa.services.repo.DataSiswaRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;

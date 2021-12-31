@@ -45,27 +45,28 @@ public class DataSekolah implements UpdateAvailable<DataSekolah>, Persistable<Lo
     public static final String KABUPATEN_COL = "kabupaten";
     public static final String PROVINSI_COL = "provinsi";
     public static final String ZONA_COL = "zona";
+    public static final String ID_COL = null;
 
     @Accessors(fluent = true)
     @Setter
     public static class Builder {
 
         private Long id;
-        private Integer id_sekolah;
+        private String id_sekolah;
         private String namaSekolah;
         private String alamat;
         private String phoneNum;
-        private Stirng fax ;
+        private Integer fax ;
         private String kecamatan ;
         private String kabupaten;
         private String provinsi;
-        private Integer zona;
+        private String zona;
         @Setter(AccessLevel.PRIVATE)
         private boolean newRecord = false;
 
-        public static Builder createNewRecord(Integer id_sekolah, String namaSekolah, String alamat) {
+        public static Builder createNewRecord(String id_sekolah2, String namaSekolah, String alamat) {
             return new Builder().newRecord(true)
-                .id_sekolah(Objects.requireNonNull(id_sekolah, "id_sekolah diperlukan"))
+                .id_sekolah(Objects.requireNonNull(id_sekolah2, "id_sekolah diperlukan"))
                 .namaSekolah(Objects.requireNonNull(namaSekolah, "Nama sekolah tidak boleh kosong"))
                 .alamat(Objects.requireNonNull(alamat, "Alamat tidak boleh kosong"));
         }
@@ -76,7 +77,7 @@ public class DataSekolah implements UpdateAvailable<DataSekolah>, Persistable<Lo
                 .alamat(changeItOrNot(newRecord.getAlamat(), oldRecord.getAlamat()))
                 .id_sekolah(changeItOrNot(newRecord.getId_sekolah(), oldRecord.getId_sekolah()))
                 .namaSekolah(changeItOrNot(newRecord.getNamaSekolah(), oldRecord.getNamaSekolah()))
-                .kecamatan(changeItOrNot(newRecord.getKecamaan(), oldRecord.getKecamatan()))
+                .kecamatan(changeItOrNot(newRecord.getKecamatan(), oldRecord.getKecamatan()))
                 .kabupaten(changeItOrNot(newRecord.getKabupaten(), oldRecord.getKabupaten()))
                 .provinsi(changeItOrNot(newRecord.getProvinsi(), oldRecord.getProvinsi()))
                 .fax(changeItOrNot(newRecord.getFax(), oldRecord.getFax()))
@@ -94,13 +95,13 @@ public class DataSekolah implements UpdateAvailable<DataSekolah>, Persistable<Lo
             result.setAlamat(alamat);
             result.setId_sekolah(id_sekolah);
             result.setNamaSekolah(namaSekolah);
-            result.setKecamtan(kecamatan);
+            result.setKecamatan(kecamatan);
             result.setKabupaten(kabupaten);
             result.setId(id);
             result.setProvinsi(provinsi);
-            result.seFax(fax);
+            result.setFax(fax);
             result.setPhoneNum(phoneNum);
-            result.setZone(zone);
+            result.setZona(zona);
             return result;
         }
     }

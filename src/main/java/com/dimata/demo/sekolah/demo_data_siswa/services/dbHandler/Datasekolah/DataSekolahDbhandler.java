@@ -2,7 +2,6 @@ package com.dimata.demo.sekolah.demo_data_siswa.services.dbHandler.Datasekolah;
 
 import com.dimata.demo.sekolah.demo_data_siswa.core.api.DbHandlerBase;
 import com.dimata.demo.sekolah.demo_data_siswa.models.table.Datasekolah.DataSekolah;
-import com.dimata.demo.sekolah.demo_data_siswa.services.repo.DataSekolahRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.r2dbc.repository.R2dbcRepository;
@@ -16,7 +15,7 @@ import reactor.core.publisher.Mono;
 @EqualsAndHashCode(callSuper = true)
 public class DataSekolahDbhandler extends DbHandlerBase<DataSekolah, Long>{
     @Autowired
-    private DataSekolahRepo repo;
+    private R2dbcRepository<DataSekolah, Long> repo;
 
     @Override
     protected R2dbcRepository<DataSekolah, Long> getRepository() {

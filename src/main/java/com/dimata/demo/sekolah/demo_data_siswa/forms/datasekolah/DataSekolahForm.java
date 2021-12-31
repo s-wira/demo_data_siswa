@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import com.dimata.demo.sekolah.demo_data_siswa.core.api.RecordAdapter;
 import com.dimata.demo.sekolah.demo_data_siswa.core.util.jackson.DateDeserialize;
 import com.dimata.demo.sekolah.demo_data_siswa.enums.GenderSiswa;
-import com.dimata.demo.sekolah.demo_data_siswa.models.table.Datasekolah;
+// import com.dimata.demo.sekolah.demo_data_siswa.models.table.Datasekolah;
 import com.dimata.demo.sekolah.demo_data_siswa.models.table.Datasekolah.DataSekolah;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DataSekolahForm implements RecordAdapter<DataSekolah>{
     private Long id;
-    private Integer id_sekolah;
+    private String id_sekolah;
     private String nama_Sekolah;
     private String alamat;
     private String phoneNum;
@@ -25,7 +25,7 @@ public class DataSekolahForm implements RecordAdapter<DataSekolah>{
     
     @JsonDeserialize(converter = DateDeserialize.class)
     private String zona;
-    private String fax;
+    private Integer fax;
     @Override
     public DataSekolah convertNewRecord() {
         return DataSekolah.Builder.createNewRecord(id_sekolah, nama_Sekolah, alamat)
