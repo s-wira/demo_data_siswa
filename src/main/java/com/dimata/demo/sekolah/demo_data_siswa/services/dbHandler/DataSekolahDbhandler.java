@@ -1,9 +1,10 @@
-package com.dimata.demo.sekolah.demo_data_siswa.services.dbHandler.Datasekolah;
+package com.dimata.demo.sekolah.demo_data_siswa.services.dbHandler;
 
 import com.dimata.demo.sekolah.demo_data_siswa.core.api.DbHandlerBase;
-import com.dimata.demo.sekolah.demo_data_siswa.models.table.Datasekolah.DataSekolah;
+import com.dimata.demo.sekolah.demo_data_siswa.models.table.DataSekolah;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.util.StringSwitcher;
 import org.springframework.data.r2dbc.repository.R2dbcRepository;
 import org.springframework.stereotype.Component;
 
@@ -40,5 +41,15 @@ public class DataSekolahDbhandler extends DbHandlerBase<DataSekolah, Long>{
                 rec.setInsertId(id);
                 return rec;
             });
+    }
+
+    
+
+    public static Mono<DataSekolah> update(DataSekolah record, Long id) {
+        return null;
+    }
+
+    public static Mono<DataSekolah> create(DataSekolah record) {
+        return null;
     }
 }

@@ -25,9 +25,9 @@ public class ManipulateUtil {
      */
     public static <T> String changeItOrNot(T firstObject, T secondObject) {
         if (firstObject != null) {
-            return firstObject;
+            return (String) firstObject;
         }
-        return secondObject;
+        return (String) secondObject;
     }
 
     /**
@@ -68,9 +68,9 @@ public class ManipulateUtil {
         return builder.toString();
     }
 
-    public static <T> T parseRow(Row row, String collumName, Class<T> type) {
+    public static <T> String parseRow(Row row, String collumName, Class<T> type) {
         try {
-            return row.get(collumName, type);
+            return (String) row.get(collumName, type);
         }catch (Exception e) {
             return null;
         }

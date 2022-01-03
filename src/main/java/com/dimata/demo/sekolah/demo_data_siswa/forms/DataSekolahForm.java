@@ -1,12 +1,10 @@
-package com.dimata.demo.sekolah.demo_data_siswa.forms.datasekolah;
+package com.dimata.demo.sekolah.demo_data_siswa.forms;
 
 import java.time.LocalDate;
 
 import com.dimata.demo.sekolah.demo_data_siswa.core.api.RecordAdapter;
 import com.dimata.demo.sekolah.demo_data_siswa.core.util.jackson.DateDeserialize;
-import com.dimata.demo.sekolah.demo_data_siswa.enums.GenderSiswa;
-// import com.dimata.demo.sekolah.demo_data_siswa.models.table.Datasekolah;
-import com.dimata.demo.sekolah.demo_data_siswa.models.table.Datasekolah.DataSekolah;
+import com.dimata.demo.sekolah.demo_data_siswa.models.table.DataSekolah;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import lombok.Data;
@@ -25,7 +23,7 @@ public class DataSekolahForm implements RecordAdapter<DataSekolah>{
     
     @JsonDeserialize(converter = DateDeserialize.class)
     private String zona;
-    private Integer fax;
+    private String fax;
     @Override
     public DataSekolah convertNewRecord() {
         return DataSekolah.Builder.createNewRecord(id_sekolah, nama_Sekolah, alamat)

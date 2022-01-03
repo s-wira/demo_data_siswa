@@ -1,7 +1,7 @@
-package com.dimata.demo.sekolah.demo_data_siswa.services.crude.Datasekolah;
+package com.dimata.demo.sekolah.demo_data_siswa.services.crude;
 
 import com.dimata.demo.sekolah.demo_data_siswa.models.table.DataSekolah;
-import com.dimata.demo.sekolah.demo_data_siswa.services.dbHandler.DataSekolahDbHandler;
+import com.dimata.demo.sekolah.demo_data_siswa.services.dbHandler.DataSekolahDbhandler;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,7 +15,7 @@ import reactor.core.publisher.Mono;
 @Component
 public class DataSekolahCrude {
     @Autowired
-    private DataSekolahDbHandler dataSekolahDbHandler;
+    private DataSekolahDbhandler dataSekolahDbHandler;
 
     public static Option initOption(DataSekolah record) {
         return new Option(record);
@@ -35,7 +35,7 @@ public class DataSekolahCrude {
     private Mono<Option> createRecord(Option option) {
 		return Mono.just(option)
 			.flatMap(o -> {
-				Mono<DataSekolah> savedRecord = dataSekolahDbHandler.create(o.getRecord());
+				Mono<DataSekolah> savedRecord = DataSekolahDbhandler.create(o.getRecord());
 				
 				return Mono.zip(savedRecord, Mono.just(o))
 					.map(z -> z.getT2().setIdRecord(z.getT1().getId()));
@@ -43,7 +43,7 @@ public class DataSekolahCrude {
 	}
 
     public Mono<DataSekolah> updateRecord(Option option) {
-        return dataSekolahDbHandler.update(option.getRecord(), option.getRecord().getId());
+        return DataSekolahDbhandler.update(option.getRecord(), option.getRecord().getId());
     }
 
     @Data

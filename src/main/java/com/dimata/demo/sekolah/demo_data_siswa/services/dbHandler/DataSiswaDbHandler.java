@@ -44,5 +44,13 @@ public class DataSiswaDbHandler extends DbHandlerBase<DataSiswa, Long> {
                 return rec;
             });
     }
+
+    public Mono<DataSiswa> updateOnly(DataSiswa record, Long id) {
+        return null;
+    }
+
+    public Mono<DataSiswa> create(DataSiswa record) {
+        return null;
+    }
     
 }

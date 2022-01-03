@@ -1,12 +1,12 @@
-package com.dimata.demo.sekolah.demo_data_siswa.services.api.datasekolah;
+package com.dimata.demo.sekolah.demo_data_siswa.services.api;
 
 
 import com.dimata.demo.sekolah.demo_data_siswa.core.search.CommonParam;
 import com.dimata.demo.sekolah.demo_data_siswa.core.search.SelectQBuilder;
 import com.dimata.demo.sekolah.demo_data_siswa.core.search.WhereQuery;
-import com.dimata.demo.sekolah.demo_data_siswa.forms.datasekolah.DataSekolahForm;
-import com.dimata.demo.sekolah.demo_data_siswa.models.table.Datasekolah.DataSekolah;
-import com.dimata.demo.sekolah.demo_data_siswa.services.crude.Datasekolah.DataSekolahCrude;
+import com.dimata.demo.sekolah.demo_data_siswa.forms.DataSekolahForm;
+import com.dimata.demo.sekolah.demo_data_siswa.models.table.DataSekolah;
+import com.dimata.demo.sekolah.demo_data_siswa.services.crude.DataSekolahCrude;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.r2dbc.core.R2dbcEntityTemplate;
