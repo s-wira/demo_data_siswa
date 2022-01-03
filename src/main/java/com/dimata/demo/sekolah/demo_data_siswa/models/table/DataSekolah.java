@@ -48,6 +48,8 @@ public class DataSekolah implements UpdateAvailable<DataSekolah>, Persistable<Lo
     public static final String PROVINSI_COL = "provinsi";
     public static final String ZONA_COL = "zona";
     //public static final String ID_COL = null;
+    // TODO : apa ini ? 
+    // kalo static final String harus ada datanya gak boleh null
     public static final String ID_COL = null;
 
     @Accessors(fluent = true)
@@ -55,6 +57,10 @@ public class DataSekolah implements UpdateAvailable<DataSekolah>, Persistable<Lo
     public static class Builder {
 
         private Long id;
+        // TODO : java makek format camel came artinya
+        // setiap kata baru diawali huruh besar
+        // Contoh : namaSekolah <- ini camel case
+        // kalo id_sekolah <- ini namanya snake case
         private String id_sekolah;
         private String namaSekolah;
         private String alamat;
@@ -109,6 +115,7 @@ public class DataSekolah implements UpdateAvailable<DataSekolah>, Persistable<Lo
         }
     }
 
+    // TODO : ini kok ada dua ID ?
     @Id
     @Column(ID_SEKOLAH)
     private Long id;
@@ -129,8 +136,8 @@ public class DataSekolah implements UpdateAvailable<DataSekolah>, Persistable<Lo
 
     public static DataSekolah fromRow(Row row) {
         var result = new DataSekolah();
-        result.setId(ManipulateUtil.parseRow(row, ID_SEKOLAH, Long.class));
-        result.setId_sekolah(ManipulateUtil.parseRow(row, ID_SEKOLAH, Integer.class));
+        // result.setId(ManipulateUtil.parseRow(row, ID_SEKOLAH, Long.class));
+        result.setId_sekolah(ManipulateUtil.parseRow(row, ID_SEKOLAH, String.class));
         result.setNamaSekolah(ManipulateUtil.parseRow(row, NAMA_SEKOLAH_COL, String.class));
         result.setPhoneNum(ManipulateUtil.parseRow(row, PHONENUM_COL, String.class));
         result.setAlamat(ManipulateUtil.parseRow(row, ALAMAT_COL, String.class));

@@ -45,6 +45,8 @@ public class DataSekolahDbhandler extends DbHandlerBase<DataSekolah, Long>{
 
     
 
+
+    // TODO : apa ini static ?
     public static Mono<DataSekolah> update(DataSekolah record, Long id) {
         return null;
     }

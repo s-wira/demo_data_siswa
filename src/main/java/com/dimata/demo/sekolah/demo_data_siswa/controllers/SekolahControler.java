@@ -1,18 +1,8 @@
 
-package com.dimata.demo.sekolah.demo_data_siswa.controllers.datasekolah;
 import com.dimata.demo.sekolah.demo_data_siswa.core.search.CommonParam;
 import com.dimata.demo.sekolah.demo_data_siswa.forms.DataSekolahForm;
 import com.dimata.demo.sekolah.demo_data_siswa.models.table.DataSekolah;
 import com.dimata.demo.sekolah.demo_data_siswa.services.api.DataSekolahApi;
-import com.dimata.demo.sekolah.demo_data_siswa.services.api.datasekolah.DataSekolahApi;
-
-
-import com.dimata.demo.sekolah.demo_data_siswa.core.search.CommonParam;
-import com.dimata.demo.sekolah.demo_data_siswa.forms.DataSekolahForm;
-import com.dimata.demo.sekolah.demo_data_siswa.models.table.DataSekolah;
-
-import com.dimata.demo.sekolah.demo_data_siswa.services.api.DataSekolahApi;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -37,7 +27,7 @@ public class SekolahControler {
 
     @PostMapping(path = BASE_URL + "/data_sekolah", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Mono<DataSekolah> maintainerAddDataSekolah(@RequestBody DataSekolahForm form) {
-
+        // TODO : Tidak boleh ada dua return dalam satu method.
         return dataSekolahApi.createDataSeklah(form);
 
         return dataSekolahApi.createDataSekolah(form);
@@ -51,7 +41,8 @@ public class SekolahControler {
 
     @GetMapping(path = BASE_URL + "/data_sekolah/{id_sekolah}")
     public Mono<DataSekolah> maintainerGetDataSekolah(@PathVariable("id_sekolah") Long id_sekolah) {
-
+        // TODO : ini typo ? gak kepakek auto correcnya ?
+        // tinggal pencel spasi + ctrl
         return dataSekolhaApi.getDataSekolah(id_sekolah);
     }
 
