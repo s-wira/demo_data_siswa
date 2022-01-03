@@ -49,7 +49,7 @@ public class DataSiswa implements UpdateAvailable<DataSiswa>, Persistable<Long>{
     public static class Builder {
 
         private Long id;
-        private Integer nis;
+        private String nis;
         private String namaSiswa;
         private String alamat;
         private String phoneNum;
@@ -60,7 +60,7 @@ public class DataSiswa implements UpdateAvailable<DataSiswa>, Persistable<Long>{
         @Setter(AccessLevel.PRIVATE)
         private boolean newRecord = false;
 
-        public static Builder createNewRecord(Integer nis, String namaSiswa, String alamatSiswa, GenderSiswa gender) {
+        public static Builder createNewRecord(String nis, String namaSiswa, String alamatSiswa, GenderSiswa gender) {
             return new Builder().newRecord(true)
                 .nis(Objects.requireNonNull(nis, "NIS diperlukan"))
                 .namaSiswa(Objects.requireNonNull(namaSiswa, "Nama siswa tidak boleh kosong"))
@@ -133,7 +133,7 @@ public class DataSiswa implements UpdateAvailable<DataSiswa>, Persistable<Long>{
     public static DataSiswa fromRow(Row row) {
         var result = new DataSiswa();
         result.setId(ManipulateUtil.parseRow(row, ID_COL, Long.class));
-        result.setNis(ManipulateUtil.parseRow(row, NIS_COL, Integer.class));
+        result.setNis(ManipulateUtil.parseRow(row, NIS_COL, String.class));
         result.setNamaSiswa(ManipulateUtil.parseRow(row, NAMA_SISWA_COL, String.class));
         result.setPhoneNum(ManipulateUtil.parseRow(row, PHONE_NUM_COL, String.class));
         result.setAlamat(ManipulateUtil.parseRow(row, ALAMAT_COL, String.class));

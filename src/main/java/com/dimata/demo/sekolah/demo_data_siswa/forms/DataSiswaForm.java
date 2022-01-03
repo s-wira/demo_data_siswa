@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class DataSiswaForm implements RecordAdapter<DataSiswa> {
 
     private Long id;
-    private Integer nis;
+    private String nis;
     private String namaSiswa;
     private String alamat;
     private String phoneNum;

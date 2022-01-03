@@ -38,7 +38,7 @@ import lombok.experimental.Accessors;
 
 public class DataSekolah implements UpdateAvailable<DataSekolah>, Persistable<Long>{
     public static final String TABLE_NAME = "data_sekolah";
-    public static final String ID_SEKOLAH = "id_sekolah";
+    public static final String ID_COL = "id_sekolah";
     public static final String NAMA_SEKOLAH_COL = "namaSekolah";
     public static final String ALAMAT_COL = "alamat";
     public static final String PHONENUM_COL = "phoneNum";
@@ -47,21 +47,12 @@ public class DataSekolah implements UpdateAvailable<DataSekolah>, Persistable<Lo
     public static final String KABUPATEN_COL = "kabupaten";
     public static final String PROVINSI_COL = "provinsi";
     public static final String ZONA_COL = "zona";
-    //public static final String ID_COL = null;
-    // TODO : apa ini ? 
-    // kalo static final String harus ada datanya gak boleh null
-    public static final String ID_COL = null;
 
     @Accessors(fluent = true)
     @Setter
     public static class Builder {
 
         private Long id;
-        // TODO : java makek format camel came artinya
-        // setiap kata baru diawali huruh besar
-        // Contoh : namaSekolah <- ini camel case
-        // kalo id_sekolah <- ini namanya snake case
-        private String id_sekolah;
         private String namaSekolah;
         private String alamat;
         private String phoneNum;
@@ -73,9 +64,9 @@ public class DataSekolah implements UpdateAvailable<DataSekolah>, Persistable<Lo
         @Setter(AccessLevel.PRIVATE)
         private boolean newRecord = false;
 
-        public static Builder createNewRecord(String id_sekolah, String namaSekolah, String alamat) {
+        public static Builder createNewRecord(Long idSekolah, String namaSekolah, String alamat) {
             return new Builder().newRecord(true)
-                .id_sekolah(Objects.requireNonNull(id_sekolah, "id_sekolah diperlukan"))
+                .id(Objects.requireNonNull(idSekolah, "id_sekolah diperlukan"))
                 .namaSekolah(Objects.requireNonNull(namaSekolah, "Nama sekolah tidak boleh kosong"))
                 .alamat(Objects.requireNonNull(alamat, "Alamat tidak boleh kosong"));
         }
@@ -84,7 +75,6 @@ public class DataSekolah implements UpdateAvailable<DataSekolah>, Persistable<Lo
             return new Builder()
                 .id(oldRecord.getId())
                 .alamat(changeItOrNot(newRecord.getAlamat(), oldRecord.getAlamat()))
-                .id_sekolah(changeItOrNot(newRecord.getId_sekolah(), oldRecord.getId_sekolah()))
                 .namaSekolah(changeItOrNot(newRecord.getNamaSekolah(), oldRecord.getNamaSekolah()))
                 .kecamatan(changeItOrNot(newRecord.getKecamatan(), oldRecord.getKecamatan()))
                 .kabupaten(changeItOrNot(newRecord.getKabupaten(), oldRecord.getKabupaten()))
@@ -100,9 +90,8 @@ public class DataSekolah implements UpdateAvailable<DataSekolah>, Persistable<Lo
 
         public DataSekolah build() {
             DataSekolah result = new DataSekolah();
-            
+            result.setId(id);
             result.setAlamat(alamat);
-            result.setId_sekolah(id_sekolah);
             result.setNamaSekolah(namaSekolah);
             result.setKecamatan(kecamatan);
             result.setKabupaten(kabupaten);
@@ -117,9 +106,8 @@ public class DataSekolah implements UpdateAvailable<DataSekolah>, Persistable<Lo
 
     // TODO : ini kok ada dua ID ?
     @Id
-    @Column(ID_SEKOLAH)
+    @Column(ID_COL)
     private Long id;
-    private String id_sekolah;
     private String namaSekolah;
     private String alamat;
     private String phoneNum;
@@ -136,14 +124,13 @@ public class DataSekolah implements UpdateAvailable<DataSekolah>, Persistable<Lo
 
     public static DataSekolah fromRow(Row row) {
         var result = new DataSekolah();
-        // result.setId(ManipulateUtil.parseRow(row, ID_SEKOLAH, Long.class));
-        result.setId_sekolah(ManipulateUtil.parseRow(row, ID_SEKOLAH, String.class));
+        result.setId(ManipulateUtil.parseRow(row, ID_COL, Long.class));
         result.setNamaSekolah(ManipulateUtil.parseRow(row, NAMA_SEKOLAH_COL, String.class));
         result.setPhoneNum(ManipulateUtil.parseRow(row, PHONENUM_COL, String.class));
         result.setAlamat(ManipulateUtil.parseRow(row, ALAMAT_COL, String.class));
-        result.setKecamatan(ManipulateUtil.parseRow(row, KECAMATAN_COL, Integer.class));
+        result.setKecamatan(ManipulateUtil.parseRow(row, KECAMATAN_COL, String.class));
         result.setKabupaten(ManipulateUtil.parseRow(row, KABUPATEN_COL, String.class));
-        result.setProvinsi(ManipulateUtil.parseRow(row, PROVINSI_COL, LocalDate.class));
+        result.setProvinsi(ManipulateUtil.parseRow(row, PROVINSI_COL, String.class));
         result.setFax(ManipulateUtil.parseRow(row, FAX_COL, String.class));
         result.setZona(ManipulateUtil.parseRow(row, ZONA_COL, String.class));
         return result;

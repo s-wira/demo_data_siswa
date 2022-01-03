@@ -35,7 +35,7 @@ public class DataSekolahCrude {
     private Mono<Option> createRecord(Option option) {
 		return Mono.just(option)
 			.flatMap(o -> {
-				Mono<DataSekolah> savedRecord = DataSekolahDbhandler.create(o.getRecord());
+				Mono<DataSekolah> savedRecord = dataSekolahDbHandler.create(o.getRecord());
 				
 				return Mono.zip(savedRecord, Mono.just(o))
 					.map(z -> z.getT2().setIdRecord(z.getT1().getId()));
@@ -43,7 +43,7 @@ public class DataSekolahCrude {
 	}
 
     public Mono<DataSekolah> updateRecord(Option option) {
-        return DataSekolahDbhandler.update(option.getRecord(), option.getRecord().getId());
+        return dataSekolahDbHandler.update(option.getRecord(), option.getRecord().getId());
     }
 
     @Data

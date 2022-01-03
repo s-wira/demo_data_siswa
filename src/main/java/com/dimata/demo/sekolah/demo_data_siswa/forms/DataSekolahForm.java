@@ -13,8 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DataSekolahForm implements RecordAdapter<DataSekolah>{
     private Long id;
-    private String id_sekolah;
-    private String nama_Sekolah;
+    private String namaSekolah;
     private String alamat;
     private String phoneNum;
     private String kecamatan;
@@ -26,7 +25,7 @@ public class DataSekolahForm implements RecordAdapter<DataSekolah>{
     private String fax;
     @Override
     public DataSekolah convertNewRecord() {
-        return DataSekolah.Builder.createNewRecord(id_sekolah, nama_Sekolah, alamat)
+        return DataSekolah.Builder.createNewRecord(id, namaSekolah, alamat)
             .phoneNum(phoneNum)
             .zona(zona)
             .fax(fax)
@@ -40,8 +39,8 @@ public class DataSekolahForm implements RecordAdapter<DataSekolah>{
             .kecamatan(kecamatan)
             .kabupaten(kabupaten)
             .provinsi(provinsi)
-            .namaSekolah(nama_Sekolah)
-            .id_sekolah(id_sekolah)
+            .namaSekolah(namaSekolah)
+            .id(id)
             .phoneNum(phoneNum)
             .id(id)
             .build();

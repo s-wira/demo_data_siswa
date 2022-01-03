@@ -1,3 +1,4 @@
+package com.dimata.demo.sekolah.demo_data_siswa.controllers;
 
 import com.dimata.demo.sekolah.demo_data_siswa.core.search.CommonParam;
 import com.dimata.demo.sekolah.demo_data_siswa.forms.DataSekolahForm;
@@ -28,7 +29,6 @@ public class SekolahControler {
     @PostMapping(path = BASE_URL + "/data_sekolah", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Mono<DataSekolah> maintainerAddDataSekolah(@RequestBody DataSekolahForm form) {
         // TODO : Tidak boleh ada dua return dalam satu method.
-        return dataSekolahApi.createDataSeklah(form);
 
         return dataSekolahApi.createDataSekolah(form);
 
@@ -43,20 +43,11 @@ public class SekolahControler {
     public Mono<DataSekolah> maintainerGetDataSekolah(@PathVariable("id_sekolah") Long id_sekolah) {
         // TODO : ini typo ? gak kepakek auto correcnya ?
         // tinggal pencel spasi + ctrl
-        return dataSekolhaApi.getDataSekolah(id_sekolah);
+        return dataSekolahApi.getDataSekolah(id_sekolah);
     }
 
     @PutMapping(path = BASE_URL + "/data_sekolah/{id_sekolah}")
-    public Mono<DataSekolah> maintainerUpdateDataSekolah(@PathVariable("id_sekolah") long id_sekolah, @RequestBody DataSeoklahForm form) {
-        return dataSekolahApi.updateDataSekolah(id_sekolah, form);
-    }
-
-
-        
-    
-
-    @PutMapping(path = BASE_URL + "/data_sekolah/{id_sekolah}")
-    public Mono<DataSekolah> maintainerUpdateDataSekolah(@PathVariable("id_sekolah") long id_sekolah, @RequestBody DataSekolahForm form) {
-        return dataSekolahApi.updateDataSekolah(id_sekolah, form);
+    public Mono<DataSekolah> maintainerUpdateDataSekolah(@PathVariable("id_sekolah") long idSekolah, @RequestBody DataSekolahForm form) {
+        return dataSekolahApi.updateDataSekolah(idSekolah, form);
     }
 }
