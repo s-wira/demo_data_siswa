@@ -23,11 +23,11 @@ public class ManipulateUtil {
      * @param secondObject Object yang direturn jika firstObject null.
      * @param <T>          Semua jenis Object.
      */
-    public static <T> String changeItOrNot(T firstObject, T secondObject) {
+    public static <T> T changeItOrNot(T firstObject, T secondObject) {
         if (firstObject != null) {
-            return (String) firstObject;
+            return firstObject;
         }
-        return (String) secondObject;
+        return secondObject;
     }
 
     /**
@@ -68,9 +68,9 @@ public class ManipulateUtil {
         return builder.toString();
     }
 
-    public static <T> String parseRow(Row row, String collumName, Class<T> type) {
+    public static <T> T parseRow(Row row, String collumName, Class<T> type) {
         try {
-            return (String) row.get(collumName, type);
+            return row.get(collumName, type);
         }catch (Exception e) {
             return null;
         }
