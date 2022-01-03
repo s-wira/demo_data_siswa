@@ -104,7 +104,7 @@ public class DataSiswa implements UpdateAvailable<DataSiswa>, Persistable<Long>{
     @Id
     @Column(ID_COL)
     private Long id;
-    private Integer nis;
+    private String nis;
     private String namaSiswa;
     private String alamat;
     private String phoneNum;

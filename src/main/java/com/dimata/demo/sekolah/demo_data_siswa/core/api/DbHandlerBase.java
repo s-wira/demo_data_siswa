@@ -141,7 +141,7 @@ public abstract class DbHandlerBase<T, I> {
      * @return Record yang sudah disimpan.
      * @see #createOnly(T)
      */
-    public Mono<T> create(T record) {
+    public   Mono<T> create(T record) {
         return setGenerateId(record)
     		.flatMap(this::save)
     		.retryWhen(Retry.backoff(2, Duration.ofMillis(10))
@@ -160,7 +160,7 @@ public abstract class DbHandlerBase<T, I> {
      * @return Record yang sudah disimpan.
      * @see #create(T)
      */
-    public Mono<T> createOnly(T record) {
+    public   Mono<T> createOnly(T record) {
         return setGenerateId(record)
     		.flatMap(this::saveOnly)
     		.retryWhen(Retry.backoff(2, Duration.ofMillis(10))
@@ -214,7 +214,7 @@ public abstract class DbHandlerBase<T, I> {
      * @param oldRecordId Id record lama.
      * @return Record yang sudah diupdate.
      */
-    public Mono<T> update(T newRecord, I oldRecordId) {
+    public   Mono<T> update(T newRecord, I oldRecordId) {
         if (newRecord instanceof UpdateAvailable) {
             Mono<T> newRecordChecked = Mono.just(newRecord).flatMap(this::doDeepCheckNewRecordBeforeUpdate);
 
@@ -238,7 +238,7 @@ public abstract class DbHandlerBase<T, I> {
      * @return Record yang sudah diupdate.
      */
     @SuppressWarnings("all")
-    public Mono<T> updateOnly(T newRecord, I oldRecordId) {
+    public   Mono<T> updateOnly(T newRecord, I oldRecordId) {
         if (newRecord instanceof UpdateAvailable) {
             return Mono.zip(getRepository().findById(oldRecordId), Mono.just(newRecord))
                     .switchIfEmpty(Mono.error(new DataNotFoundException("Id not found in db"))).map(z -> {

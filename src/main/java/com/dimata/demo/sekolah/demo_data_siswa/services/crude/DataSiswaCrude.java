@@ -44,7 +44,7 @@ public class DataSiswaCrude {
 	}
 
     public Mono<DataSiswa> updateRecord(Option option) {
-        return dataSiswaDbHandler.update(option.getRecord(), option.getRecord().getId());
+        return dataSiswaDbHandler.updateOnly(option.getRecord(), option.getRecord().getId());
     }
 
     @Data

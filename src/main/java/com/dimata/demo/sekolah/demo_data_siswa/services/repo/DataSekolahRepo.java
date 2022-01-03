@@ -1,6 +1,6 @@
-package com.dimata.demo.sekolah.demo_data_siswa.services.repo.Datasekolah;
+package com.dimata.demo.sekolah.demo_data_siswa.services.repo;
 
-import com.dimata.demo.sekolah.demo_data_siswa.models.table.Datasekolah.DataSekolah;
+import com.dimata.demo.sekolah.demo_data_siswa.models.table.DataSekolah;
 
 import org.springframework.data.r2dbc.repository.R2dbcRepository;
 

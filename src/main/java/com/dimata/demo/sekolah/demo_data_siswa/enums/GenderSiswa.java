@@ -10,7 +10,7 @@ public enum GenderSiswa {
     @Getter
     private final int code;
 
-    public static GenderSiswa getGender(int code){
+    public static GenderSiswa getGender(Integer code){
         switch (code) {
             case 0:
                 return LAKI_LAKI;
