@@ -1,0 +1,12 @@
+{
+    "type": "java",
+    "name": "Launch Yogi",
+    "request": "launch",
+    "mainClass": "com.dimata.service.general.appaccount.AppAccountApplication",
+    "projectName": "app-account",
+    "args": "--spring.profiles.active=yogi",
+    
+    
+    
+    
+}
