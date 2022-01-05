@@ -12,10 +12,12 @@ import static com.dimata.demo.sekolah.demo_data_siswa.core.util.ManipulateUtil.c
 import com.dimata.demo.sekolah.demo_data_siswa.core.api.UpdateAvailable;
 import com.dimata.demo.sekolah.demo_data_siswa.core.util.GenerateUtil;
 import com.dimata.demo.sekolah.demo_data_siswa.core.util.ManipulateUtil;
+import com.dimata.demo.sekolah.demo_data_siswa.core.util.jackson.DateDeserialize;
 import com.dimata.demo.sekolah.demo_data_siswa.core.util.jackson.DateSerialize;
 import com.dimata.demo.sekolah.demo_data_siswa.enums.GenderSiswa;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import org.springframework.data.annotation.Id;
@@ -114,6 +116,8 @@ public class DataSekolah implements UpdateAvailable<DataSekolah>, Persistable<Lo
     private String fax;
     private String kecamatan;
     @JsonSerialize(converter = DateSerialize.class)
+    @JsonDeserialize(converter = DateDeserialize.class)
+
     private String kabupaten;
     private String provinsi;
     private String zona;
