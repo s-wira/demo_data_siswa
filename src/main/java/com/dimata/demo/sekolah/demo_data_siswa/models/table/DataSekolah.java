@@ -68,7 +68,7 @@ public class DataSekolah implements UpdateAvailable<DataSekolah>, Persistable<Lo
 
         public static Builder createNewRecord(String namaSekolah, String alamat) {
             return new Builder().newRecord(true)
-                
+
                 .namaSekolah(Objects.requireNonNull(namaSekolah, "Nama sekolah tidak boleh kosong"))
                 .alamat(Objects.requireNonNull(alamat, "Alamat tidak boleh kosong"));
         }

@@ -44,5 +44,7 @@ public class DataSiswaDbHandler extends DbHandlerBase<DataSiswa, Long> {
                 return rec;
             });
     }
+
+    
     
 }
