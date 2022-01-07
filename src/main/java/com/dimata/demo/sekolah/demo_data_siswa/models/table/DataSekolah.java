@@ -97,7 +97,6 @@ public class DataSekolah implements UpdateAvailable<DataSekolah>, Persistable<Lo
             result.setNamaSekolah(namaSekolah);
             result.setKecamatan(kecamatan);
             result.setKabupaten(kabupaten);
-            result.setId(id);
             result.setProvinsi(provinsi);
             result.setFax(fax);
             result.setPhoneNum(phoneNum);
@@ -115,11 +114,6 @@ public class DataSekolah implements UpdateAvailable<DataSekolah>, Persistable<Lo
     private String phoneNum;
     private String fax;
     private String kecamatan;
-    @JsonSerialize(converter = DateSerialize.class)
-
-    @JsonDeserialize(converter = DateDeserialize.class)
-
-
     private String kabupaten;
     private String provinsi;
     private String zona;

@@ -40,7 +40,6 @@ public class DataSekolahForm implements RecordAdapter<DataSekolah>{
             .namaSekolah(namaSekolah)
             .id(id)
             .phoneNum(phoneNum)
-            .id(id)
             .build();
     }
 }
