@@ -5,6 +5,12 @@
     "mainClass": "com.dimata.service.general.appaccount.AppAccountApplication",
     "projectName": "app-account",
     "args": "--spring.profiles.active=yogi",
+
+    
+    
+    
+    
+
     "configurations": [
         {
             "type": "java",
@@ -14,4 +20,5 @@
             "projectName": "demo_data_siswa"
         }
     ]
+
 }
