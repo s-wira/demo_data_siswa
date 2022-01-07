@@ -66,9 +66,9 @@ public class DataSekolah implements UpdateAvailable<DataSekolah>, Persistable<Lo
         @Setter(AccessLevel.PRIVATE)
         private boolean newRecord = false;
 
-        public static Builder createNewRecord(Long idSekolah, String namaSekolah, String alamat) {
+        public static Builder createNewRecord( String namaSekolah, String alamat) {
             return new Builder().newRecord(true)
-                .id(Objects.requireNonNull(idSekolah, "id_sekolah diperlukan"))
+                //.id(Objects.requireNonNull(idSekolah, "id_sekolah diperlukan"))
                 .namaSekolah(Objects.requireNonNull(namaSekolah, "Nama sekolah tidak boleh kosong"))
                 .alamat(Objects.requireNonNull(alamat, "Alamat tidak boleh kosong"));
         }
