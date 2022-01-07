@@ -19,13 +19,13 @@ public class DataSekolahForm implements RecordAdapter<DataSekolah>{
     private String kecamatan;
     private String kabupaten;
     private String provinsi;
-    
+    @JsonSerialize(converter = DateSerialize.class)
     @JsonDeserialize(converter = DateDeserialize.class)
     private String zona;
     private String fax;
     @Override
     public DataSekolah convertNewRecord() {
-        return DataSekolah.Builder.createNewRecord(id, namaSekolah, alamat)
+        return DataSekolah.Builder.createNewRecord( namaSekolah, alamat)
             .phoneNum(phoneNum)
             .zona(zona)
             .fax(fax)
