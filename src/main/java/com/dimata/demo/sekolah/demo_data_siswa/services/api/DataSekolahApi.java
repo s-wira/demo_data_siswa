@@ -8,6 +8,8 @@ import com.dimata.demo.sekolah.demo_data_siswa.forms.DataSekolahForm;
 import com.dimata.demo.sekolah.demo_data_siswa.models.table.DataSekolah;
 import com.dimata.demo.sekolah.demo_data_siswa.services.crude.DataSekolahCrude;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.r2dbc.core.R2dbcEntityTemplate;
 import org.springframework.stereotype.Service;
@@ -31,6 +33,26 @@ public class DataSekolahApi {
         })
         .flatMap(dataSekolahCrude::create);
     }
+
+    public Flux<DataSekolah> createDataSekolahBatch(List<DataSekolahForm> form) {
+        return Mono.just(form)
+            .flatMapMany(Flux::fromIterable)
+            .flatMap(f -> {
+                DataSekolahCrude.Option option = DataSekolahCrude.initOption(f.convertNewRecord());
+                return Mono.just(option);
+            })
+            .flatMap(dataSekolahCrude::create);
+    }
+
+    // public Flux<DataSekolah> createDataSekolahBatch(List<DataSekolahForm> form) {
+    //     return Mono.just(form)
+    //         .flatMapMany(Flux::fromIterable)
+    //         .flatMap(f -> {
+    //             DataSekolahCrude.Option option = DataSekolahCrude.initOption(f.convertNewRecord());
+    //             return Mono.just(option);
+    //         })
+    //         .flatMap(dataSekolahCrude::create);
+    // }
 
     public Flux<DataSekolah> getAllDataSekolah(CommonParam param) {
         var sql = SelectQBuilder.builderWithCommonParam(DataSekolah.TABLE_NAME, param)

@@ -5,6 +5,8 @@ import com.dimata.demo.sekolah.demo_data_siswa.forms.DataSekolahForm;
 import com.dimata.demo.sekolah.demo_data_siswa.models.table.DataSekolah;
 import com.dimata.demo.sekolah.demo_data_siswa.services.api.DataSekolahApi;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +34,16 @@ public class SekolahControler {
         return dataSekolahApi.createDataSekolah(form);
 
     }
+
+    @PostMapping(path = BASE_URL + "/data_sekolah/batch", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Flux<DataSekolah> maintainerAddDataSekolahBatch(@RequestBody List<DataSekolahForm> form) {
+        return dataSekolahApi.createDataSekolahBatch(form);
+    }
+
+    // @PostMapping(path = BASE_URL + "/data_sekolah/batch", consumes = MediaType.APPLICATION_JSON_VALUE)
+    // public Flux<DataSekolah> maintainerAddDataSekolahBatch(@RequestBody List<DataSekolahForm> form) {
+    //     return dataSekolahApi.createDataSekolahBatch(form);
+    // }
 
     @GetMapping(path = BASE_URL + "/data_sekolah")
     public Flux<DataSekolah> maintainerGetAllDataSekolah(CommonParam param) {
