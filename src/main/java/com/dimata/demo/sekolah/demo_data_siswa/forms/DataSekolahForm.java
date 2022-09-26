@@ -28,6 +28,10 @@ public class DataSekolahForm implements RecordAdapter<DataSekolah>{
             .zona(zona)
             .fax(fax)
             .id(id)
+            .kecamatan(kecamatan)
+            .kabupaten(kabupaten)
+            .provinsi(provinsi)
+            .zona(zona)
             .build();
     }
     @Override
@@ -39,6 +43,7 @@ public class DataSekolahForm implements RecordAdapter<DataSekolah>{
             .provinsi(provinsi)
             .namaSekolah(namaSekolah)
             .id(id)
+            .fax(fax)
             .phoneNum(phoneNum)
             .build();
     }
