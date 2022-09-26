@@ -28,7 +28,6 @@ public class SekolahControler {
 
     @PostMapping(path = BASE_URL + "/data_sekolah", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Mono<DataSekolah> maintainerAddDataSekolah(@RequestBody DataSekolahForm form) {
-        // TODO : Tidak boleh ada dua return dalam satu method.
 
         return dataSekolahApi.createDataSekolah(form);
 
@@ -41,8 +40,6 @@ public class SekolahControler {
 
     @GetMapping(path = BASE_URL + "/data_sekolah/{id_sekolah}")
     public Mono<DataSekolah> maintainerGetDataSekolah(@PathVariable("id_sekolah") Long id_sekolah) {
-        // TODO : ini typo ? gak kepakek auto correcnya ?
-        // tinggal pencel spasi + ctrl
         return dataSekolahApi.getDataSekolah(id_sekolah);
     }
 

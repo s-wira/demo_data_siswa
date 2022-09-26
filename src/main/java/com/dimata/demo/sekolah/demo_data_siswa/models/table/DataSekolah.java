@@ -43,7 +43,7 @@ public class DataSekolah implements UpdateAvailable<DataSekolah>, Persistable<Lo
     public static final String ID_COL = "id_sekolah";
     public static final String NAMA_SEKOLAH_COL = "namaSekolah";
     public static final String ALAMAT_COL = "alamat";
-    public static final String PHONENUM_COL = "phoneNum";
+    public static final String PHONENUM_COL = "phone";
     public static final String FAX_COL = "fax";
     public static final String KECAMATAN_COL = "kecamatan ";
     public static final String KABUPATEN_COL = "kabupaten";
@@ -111,6 +111,7 @@ public class DataSekolah implements UpdateAvailable<DataSekolah>, Persistable<Lo
     private Long id;
     private String namaSekolah;
     private String alamat;
+    @Column(PHONENUM_COL)
     private String phoneNum;
     private String fax;
     private String kecamatan;
