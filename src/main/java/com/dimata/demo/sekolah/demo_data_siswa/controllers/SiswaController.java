@@ -47,8 +47,4 @@ public class SiswaController {
         return dataSiswaApi.updateDataSiswa(nisn, form);
     }
 
-    @GetMapping(path = BASE_URL + "/data_siswa/{nama_sekolah}")
-    public Mono<DataSiswa> maintainerGetDataSiswa(@PathVariable("nama_sekolah") String nama_sekolah ) {
-        return dataSiswaApi.getDataSiswa(nama_sekolah);
-    }
 }
