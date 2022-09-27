@@ -28,6 +28,7 @@ public class DataSekolahForm implements RecordAdapter<DataSekolah>{
             .zona(zona)
             .fax(fax)
             .id(id)
+            .namaSekolah(namaSekolah)
             .kecamatan(kecamatan)
             .kabupaten(kabupaten)
             .provinsi(provinsi)
