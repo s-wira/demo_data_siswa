@@ -7,6 +7,8 @@ import com.dimata.demo.sekolah.demo_data_siswa.forms.DataSiswaForm;
 import com.dimata.demo.sekolah.demo_data_siswa.models.table.DataSiswa;
 import com.dimata.demo.sekolah.demo_data_siswa.services.crude.DataSiswaCrude;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.r2dbc.core.R2dbcEntityTemplate;
 import org.springframework.stereotype.Service;
@@ -29,6 +31,16 @@ public class DataSiswaApi {
             return Mono.just(option);
         })
         .flatMap(dataSiswaCrude::create);
+    }
+
+    public Flux<DataSiswa> createDataSiswaBatch(List<DataSiswaForm> form) {
+        return Mono.just(form)
+            .flatMapMany(Flux::fromIterable)
+            .flatMap(f -> {
+                DataSiswaCrude.Option option = DataSiswaCrude.initOption(f.convertNewRecord());
+                return Mono.just(option);
+            })
+            .flatMap(dataSiswaCrude::create);
     }
 
     public Flux<DataSiswa> getAllDataSiswa(CommonParam param) {

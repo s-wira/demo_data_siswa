@@ -5,6 +5,8 @@ import com.dimata.demo.sekolah.demo_data_siswa.forms.DataSiswaForm;
 import com.dimata.demo.sekolah.demo_data_siswa.models.table.DataSiswa;
 import com.dimata.demo.sekolah.demo_data_siswa.services.api.DataSiswaApi;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +32,11 @@ public class SiswaController {
     @PostMapping(path = BASE_URL + "/data_siswa", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Mono<DataSiswa> maintainerAddDataSiswa(@RequestBody DataSiswaForm form) {
         return dataSiswaApi.createDataSiswa(form);
+    }
+
+    @PostMapping(path = BASE_URL + "/data_siswa/batch", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Flux<DataSiswa> maintainerAddDataSiswaBatch(@RequestBody List<DataSiswaForm> form) {
+        return dataSiswaApi.createDataSiswaBatch(form);
     }
 
     @GetMapping(path = BASE_URL + "/data_siswa")
