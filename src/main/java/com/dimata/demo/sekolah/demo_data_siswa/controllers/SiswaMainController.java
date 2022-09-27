@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dimata.demo.sekolah.demo_data_siswa.forms.DataSiswaMainForm;
+import com.dimata.demo.sekolah.demo_data_siswa.forms.SiswaMainForm;
 import com.dimata.demo.sekolah.demo_data_siswa.models.table.SiswaMain;
 import com.dimata.demo.sekolah.demo_data_siswa.services.api.DataSekolahApi;
 import com.dimata.demo.sekolah.demo_data_siswa.services.api.DataSiswaApi;
@@ -35,10 +36,22 @@ public class SiswaMainController {
     ){
         return Mono.just(form)
             .flatMap(f -> {
-                var dataSiswa = dataSiswaApi.createDataSiswa(form.getDataSiswa());
-                var dataSekolah = dataSekolahApi.createDataSekolah(form.getDataSekolah());
-                return Mono.zip(combinator, monos)
+                var dataSiswa = dataSiswaApi
+                    .createDataSiswa(f.getDataSiswa());
+                var dataSekolah = dataSekolahApi
+                    .createDataSekolah(f.getDataSekolah());
+                return Mono.zip(dataSiswa, dataSekolah);
             })
+            .flatMap(z -> {
+                SiswaMainForm siswaMainForm = new SiswaMainForm();
+                siswaMainForm.setIdSekolah(z.getT2().getId());
+                siswaMainForm.setNisn(z.getT1().getId());
+                siswaMainForm.setNis(Integer.parseInt(
+                    z.getT1().getNis())
+                );
+
+                return siswaMainApi.createDataSiswa(siswaMainForm);
+            });
     }
 
 }
