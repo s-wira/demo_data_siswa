@@ -17,13 +17,16 @@ public class SiswaMainForm implements RecordAdapter<SiswaMain>{
 
     @Override
     public SiswaMain convertNewRecord() {
-        return Data
+        return SiswaMain.Builder.createNewRecord(nisn, nis, idSekolah).build();
     }
 
     @Override
     public SiswaMain convertToRecord() {
-        // TODO Auto-generated method stub
-        return null;
+        return SiswaMain.Builder.emptyBuilder()
+            .nis(nis)
+            .nisn(nisn)
+            .idSekolah(idSekolah)
+            .build();
     }
     
 }

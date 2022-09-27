@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.dimata.demo.sekolah.demo_data_siswa.core.search.CommonParam;
 import com.dimata.demo.sekolah.demo_data_siswa.core.search.SelectQBuilder;
 import com.dimata.demo.sekolah.demo_data_siswa.core.search.WhereQuery;
+import com.dimata.demo.sekolah.demo_data_siswa.forms.SiswaMainForm;
 import com.dimata.demo.sekolah.demo_data_siswa.models.table.SiswaMain;
 import com.dimata.demo.sekolah.demo_data_siswa.services.crude.SiswaMainCrude;
 
@@ -23,7 +24,7 @@ public class SiswaMainApi {
     @Autowired
     private R2dbcEntityTemplate template;
 
-    public Mono<SiswaMain> createDataSiswa(DataSiswaForm form) {
+    public Mono<SiswaMain> createDataSiswa(SiswaMainForm form) {
         return Mono.just(form)
         .flatMap(f -> {
             SiswaMainCrude.Option option = SiswaMainCrude.initOption(f.convertNewRecord());
@@ -32,11 +33,11 @@ public class SiswaMainApi {
         .flatMap(siswaMainCrude::create);
     }
 
-    public Flux<SiswaMain> createDataSiswaBatch(List<DataSiswaForm> form) {
+    public Flux<SiswaMain> createDataSiswaBatch(List<SiswaMainForm> form) {
         return Mono.just(form)
             .flatMapMany(Flux::fromIterable)
             .flatMap(f -> {
-                DataSiswaCrude.Option option = DataSiswaCrude.initOption(f.convertNewRecord());
+                SiswaMainCrude.Option option = SiswaMainCrude.initOption(f.convertNewRecord());
                 return Mono.just(option);
             })
             .flatMap(siswaMainCrude::create);
@@ -62,7 +63,7 @@ public class SiswaMainApi {
             .one();
     }
 
-    public Mono<SiswaMain> updateDataSiswa(Long id, DataSiswaForm form) {
+    public Mono<SiswaMain> updateDataSiswa(Long id, SiswaMainForm form) {
         return Mono.zip(Mono.just(id), Mono.just(form))
             .map(z -> {
                 z.getT2().setId(z.getT1());
