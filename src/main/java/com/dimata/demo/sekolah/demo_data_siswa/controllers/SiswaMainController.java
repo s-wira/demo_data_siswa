@@ -2,18 +2,23 @@ package com.dimata.demo.sekolah.demo_data_siswa.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dimata.demo.sekolah.demo_data_siswa.forms.DataSiswaMainForm;
+import com.dimata.demo.sekolah.demo_data_siswa.forms.ListSiswaForm;
 import com.dimata.demo.sekolah.demo_data_siswa.forms.SiswaMainForm;
+import com.dimata.demo.sekolah.demo_data_siswa.models.table.DataSekolah;
 import com.dimata.demo.sekolah.demo_data_siswa.models.table.SiswaMain;
 import com.dimata.demo.sekolah.demo_data_siswa.services.api.DataSekolahApi;
 import com.dimata.demo.sekolah.demo_data_siswa.services.api.DataSiswaApi;
 import com.dimata.demo.sekolah.demo_data_siswa.services.api.SiswaMainApi;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
@@ -38,8 +43,13 @@ public class SiswaMainController {
             .flatMap(f -> {
                 var dataSiswa = dataSiswaApi
                     .createDataSiswa(f.getDataSiswa());
-                var dataSekolah = dataSekolahApi
+                Mono<DataSekolah> dataSekolah;
+                if (f.getIdSekolah()==null) {
+                    dataSekolah = dataSekolahApi
                     .createDataSekolah(f.getDataSekolah());
+                } else {
+                    dataSekolah = dataSekolahApi.getDataSekolah(f.getIdSekolah());
+                }
                 return Mono.zip(dataSiswa, dataSekolah);
             })
             .flatMap(z -> {
@@ -51,6 +61,30 @@ public class SiswaMainController {
                 );
 
                 return siswaMainApi.createDataSiswa(siswaMainForm);
+            });
+    }
+
+    @GetMapping(path = BASE_URL + "/siswa_main/{idSekolah}")
+    public Mono<ListSiswaForm> maintainerGetListSiswaSekolah(@PathVariable("idSekolah") Long id) {
+        return Mono.just(id)
+            .flatMap(f -> dataSekolahApi.getDataSekolah(f))
+            .flatMap(f -> {
+                var ids = siswaMainApi.getAllSiswaMainFromSekolahId(f.getId()).collectList();
+                return Mono.zip(Mono.just(f), ids);
+            })
+            .flatMap(z -> {
+                var dataSiswa = Mono.just(z.getT2())
+                    .flatMapMany(Flux::fromIterable)
+                    .flatMap(f -> {
+                        return dataSiswaApi.getDataSiswa(f.getNisn());
+                    }).collectList();
+                return Mono.zip(Mono.just(z.getT1()), dataSiswa);
+            })
+            .map(z -> {
+                ListSiswaForm data = new ListSiswaForm();
+                data.setDaftarSiswa(z.getT2());
+                data.setSekolah(z.getT1());
+                return data;
             });
     }
 

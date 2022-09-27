@@ -8,4 +8,5 @@ import lombok.NoArgsConstructor;
 public class DataSiswaMainForm {
     private DataSiswaForm dataSiswa;
     private DataSekolahForm dataSekolah;
+    private Long idSekolah;
 }

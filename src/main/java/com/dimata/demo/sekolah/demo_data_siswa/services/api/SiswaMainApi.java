@@ -63,6 +63,16 @@ public class SiswaMainApi {
             .one();
     }
 
+    public Flux<SiswaMain> getAllSiswaMainFromSekolahId(Long sekolahId) {
+        var sql = SelectQBuilder.emptyBuilder(SiswaMain.TABLE_NAME)
+            .addWhere(WhereQuery.when(SiswaMain.ID_SEKOLAH_COL).is(sekolahId))
+            .build();
+        return template.getDatabaseClient()
+            .sql(sql)
+            .map(SiswaMain::fromRow)
+            .all();
+    }
+
     public Mono<SiswaMain> updateDataSiswa(Long id, SiswaMainForm form) {
         return Mono.zip(Mono.just(id), Mono.just(form))
             .map(z -> {
